@@ -5,8 +5,8 @@ Config.Position = 'top-right' -- 'top-left' or 'top-right' or 'bottom-left' or '
 
 Config.Announce = {
     ['mechanic'] = {
-        ['Ouvert'] = {
-            id                              = 'Ouvert',
+        ['Open'] = {
+            id                              = 'mechanic_open',
             title                           = "Informations",
             description                     = "Ouvert",
             position                        = 'top',
@@ -18,8 +18,8 @@ Config.Announce = {
             type                            = 'error',
             iconColor                       = '#FFFFFF'
         },
-        ['Fermer'] = {
-            id                              = 'Fermer',
+        ['Close'] = {
+            id                              = 'mechanic_close',
             title                           = "Informations",
             description                     = "Fermer",
             position                        = 'top',
@@ -33,8 +33,8 @@ Config.Announce = {
         },
     },
     ['cardealer'] = {
-        ['Ouvert 1'] = {
-            id                              = 'Ouvert',
+        ['Open'] = {
+            id                              = 'cardealer_open',
             title                           = "Informations",
             description                     = "Ouvert",
             position                        = 'top',
@@ -46,8 +46,8 @@ Config.Announce = {
             type                            = 'error',
             iconColor                       = '#FFFFFF'
         },
-        ['Fermer 1'] = {
-            id                              = 'Fermer',
+        ['Close'] = {
+            id                              = 'cardealer_close',
             title                           = "Informations",
             description                     = "Fermer",
             position                        = 'top',
