@@ -1,10 +1,4 @@
-RegisterCommand('announce', function()
-	Announce()
-end, false)
-
-RegisterKeyMapping('announce', 'Open Announce Menu', 'keyboard', 'f6')
-
-function Announce()
+local function Announce()
 	if Config.Announce[ESX.PlayerData.job.name] then
 		local data = {}
 		for k,v in pairs (Config.Announce[ESX.PlayerData.job.name]) do
@@ -42,3 +36,7 @@ function Announce()
 		end
 	end
 end
+
+RegisterCommand('announce', Announce, false)
+
+RegisterKeyMapping('announce', 'Open Announce Menu', 'keyboard', 'f6')
