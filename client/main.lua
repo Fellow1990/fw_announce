@@ -1,42 +1,30 @@
 local function Announce()
-	if Config.Announce[ESX.PlayerData.job.name] then
-		local data = {}
-		for k,v in pairs (Config.Announce[ESX.PlayerData.job.name]) do
-			if Config.Context then
-				data[#data+1] = {
-					title = k,
-					onSelect = function()
-						TriggerServerEvent('fw_announce:Notification', v)
-					end
-				}
-			else
-				data[#data+1] = {
-					label = k,
-					args = {event = v}
-				}
-			end
-		end
-		if Config.Context then
-			lib.registerContext({
-				id = 'menu_announce',
-				title = 'Annonces: '..ESX.PlayerData.job.label,
-				options = data
-			})
-			lib.showContext('menu_announce')
-		else
-			lib.registerMenu({
-				id = 'menu_announce',
-				title = 'Annonces: '..ESX.PlayerData.job.label,
-				position = Config.Position,
-				options = data
-			}, function(selected, scrollIndex, args)
-				TriggerServerEvent('fw_announce:Notification', args.event)
-			end)
-			lib.showMenu('menu_announce')
-		end
-	end
+    local jobData, announceConfig = ESX.PlayerData.job, Config.Announce[ESX.PlayerData.job.name]
+
+    if announceConfig then
+        local menuOptions = {
+            id = 'menu_announce',
+            title = 'Annonces: ' .. jobData.label,
+            position = Config.Position,
+            options = {}
+        }
+
+        for k, v in pairs(announceConfig) do
+            table.insert(menuOptions.options, Config.Context and { title = k, onSelect = function() TriggerServerEvent('fw_announce:Notification', v) end }
+                                                          or { label = k, args = { event = v } })
+        end
+
+        if Config.Context then
+            lib.registerContext(menuOptions)
+            lib.showContext('menu_announce')
+        else
+            lib.registerMenu(menuOptions, function(selected, scrollIndex, args)
+                TriggerServerEvent('fw_announce:Notification', args.event)
+            end)
+            lib.showMenu('menu_announce')
+        end
+    end
 end
 
 RegisterCommand('announce', Announce, false)
-
-RegisterKeyMapping('announce', 'Open Announce Menu', 'keyboard', 'f6')
+RegisterKeyMapping('announce', 'Ouvrir le menu des annonces', 'keyboard', 'f6')
