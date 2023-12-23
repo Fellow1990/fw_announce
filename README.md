@@ -1,5 +1,3 @@
-# fw_announce
-
-🌍 FiveM | Francophone
+Fellow | Discord
 
 https://discord.gg/wewesnerQd
